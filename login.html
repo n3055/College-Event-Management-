@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login / Signup | MVJCE Event System</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  margin:0;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#000;
+}
+
+video.bg-video{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  object-fit:cover;
+  z-index:-2;
+  opacity:0.8;
+}
+
+.overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  height:100vh;
+  width:100vw;
+  background:rgba(0,0,0,0.6);
+  z-index:-1;
+}
+
+.login-container{
+  background:rgba(51,51,51,0.85);
+  padding:40px;
+  border-radius:12px;
+  box-shadow:0 0 25px orange;
+  width:400px;
+  color:#fff;
+}
+
+h2{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+input,select{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border:none;
+  border-radius:6px;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  background:orange;
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+button:hover{
+  background:darkorange;
+}
+
+.toggle-btns{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.toggle-btns button{
+  width:48%;
+  background:#333;
+}
+
+.toggle-btns button.active{
+  background:orange;
+}
+
+form{
+  display:none;
+}
+
+form.active{
+  display:block;
+}
+
+.back-button{
+  display:block;
+  text-align:center;
+  margin-top:10px;
+  color:white;
+  text-decoration:none;
+}
+
+.back-button:hover{
+  color:orange;
+}
+</style>
+
+</head>
+
+<body>
+
+<video autoplay muted loop class="bg-video">
+<source src="assets/video_3.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="login-container">
+
+<div class="toggle-btns">
+<button id="loginBtn" class="active">Login</button>
+<button id="signupBtn">Sign Up</button>
+</div>
+
+<!-- LOGIN FORM -->
+<form id="loginForm" class="active" action="login.php" method="POST">
+
+<input type="email" name="email" placeholder="Email" required>
+
+<input type="password" name="password" placeholder="Password" required>
+<select name="role" required>
+<option value="">Select Role</option>
+<option value="student">Student</option>
+<option value="faculty">Faculty</option>
+<option value="club_admin">Club Admin</option>
+</select>
+
+<button type="submit">Login</button>
+
+</form>
+
+<!-- SIGNUP FORM -->
+<form id="signupForm" action="register.php" method="POST">
+
+<input type="text" name="name" placeholder="Full Name" required>
+
+<input type="email" name="email" placeholder="Email" required>
+
+<input type="password" name="password" placeholder="Password (min 6 chars)" required>
+
+<input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+<!-- Hidden role -->
+<input type="hidden" name="role" value="student">
+
+<button type="submit">Sign Up</button>
+
+</form>
+
+<a href="index.html" class="back-button">← Back to Home</a>
+
+</div>
+
+<script>
+
+const loginBtn=document.getElementById("loginBtn");
+const signupBtn=document.getElementById("signupBtn");
+
+const loginForm=document.getElementById("loginForm");
+const signupForm=document.getElementById("signupForm");
+
+loginBtn.onclick=function(){
+loginBtn.classList.add("active");
+signupBtn.classList.remove("active");
+
+loginForm.classList.add("active");
+signupForm.classList.remove("active");
+}
+
+signupBtn.onclick=function(){
+signupBtn.classList.add("active");
+loginBtn.classList.remove("active");
+
+signupForm.classList.add("active");
+loginForm.classList.remove("active");
+}
+
+</script>
+
+</body>
+</html>
